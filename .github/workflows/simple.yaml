@@ -1,11 +1,11 @@
-name: Shell Commands
+name: Shell Commands - On Push
 
 on: [push]
 
 jobs: 
-  run-shell-command: 
-    runs-on: ubuntu-latest
-    steps:
+  run-shell-command: # Key/Name of the job
+    runs-on: ubuntu-latest # Virtual machine to run on 
+    steps: # Each step the job
       - name: echo a string
         run: echo "Hello World"
       - name: multiline script
@@ -19,8 +19,8 @@ jobs:
           (platform.processor())
         shell: python
   run-window-command: 
-    runs-on: windows-latest
-    needs: ['run-shell-command']
+    runs-on: windows-latest 
+    needs: ['run-shell-command'] # What the job relies on to avoid running in parallel
     steps:
       - name: Directory PowerShell
         run: Get-Location
